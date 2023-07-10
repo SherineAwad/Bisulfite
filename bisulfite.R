@@ -186,6 +186,6 @@ dev.off()
 members <- getMembers(diffCpGann)
 members 
 
-tss <- getAssociationWithTSS(diffCpGann)
-tss
+stats <- getTargetAnnotationStats(diffCpGann,percentage=TRUE,precedence=TRUE)
+stats
 
