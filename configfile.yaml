@@ -1,0 +1,6 @@
+GENOME_PATH: "/rds/project/rds-O11U8YqSuCk/SM/bisulfite/SLX21202" #copied from  /rds/project/rds-O11U8YqSuCk/SM/annotations/hg38v100/genome.fa 
+BISULFITE_PATH: "/rds/project/rds-O11U8YqSuCk/SM/bisulfite/Bisulfite_Genome"
+SAMPLES: "SLX-21202_samples.tsv"
+SINGLE: "TRUE"
+THREADS: 4
+

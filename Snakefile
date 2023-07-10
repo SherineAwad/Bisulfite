@@ -1,15 +1,15 @@
-
-
+with open(config['SAMPLES']) as fp:
+    SAMPLES = fp.read().splitlines()
 
 rule all:
       input: 
          expand("{path}/CT_conversion/genome_mfa.CT_conversion.fa",  path = config['BISULFITE_PATH']),
          expand("{path}/GA_conversion/genome_mfa.GA_conversion.fa", path = config['BISULFITE_PATH']), 
-         expand("{sample}_trimmed_bismark_bt2.bam", sample = config['SAMPLE']), 
-         expand("CpG_context_{sample}_trimmed_bismark_bt2.txt", sample = config['SAMPLE']), 
-         expand("CHG_context_{sample}_trimmed_bismark_bt2.txt", sample = config['SAMPLE']), 
-         expand("CHH_context_{sample}_trimmed_bismark_bt2.txt", sample = config['SAMPLE']), 
-
+         expand("{sample}_trimmed_bismark_bt2.bam", sample = SAMPLES), 
+         expand("CpG_context_{sample}_trimmed_bismark_bt2.txt", sample = SAMPLES), 
+         expand("CHG_context_{sample}_trimmed_bismark_bt2.txt", sample = SAMPLES), 
+         expand("CHH_context_{sample}_trimmed_bismark_bt2.txt", sample = SAMPLES), 
+         expand("diff.csv") 
 rule genome_preparation:
      output: 
          expand("{path}/CT_conversion/genome_mfa.CT_conversion.fa",  path = config['BISULFITE_PATH']), 
@@ -74,4 +74,12 @@ else:
                """
                bismark . {input}
                """
-
+"""
+rule MethyKit: 
+	input: 
+            "{sample}.bismark.cov.gz" 
+        output: 
+            "diff.csv" 
+        shell: 
+            "Rscript bisulfite.R" 
+"""
